@@ -1,7 +1,10 @@
+import 'normalize.css'
+import './assets/style/index.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
-const app = createApp(App)
+import { store, key } from './store'
 
-app.use(store).use(router).mount('#app')
+store.dispatch('login/loadLocalLogin')
+const app = createApp(App)
+app.use(store, key).use(router).mount('#app')
