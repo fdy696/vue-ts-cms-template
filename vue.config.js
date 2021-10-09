@@ -12,11 +12,11 @@ module.exports = {
     }
   },
   configureWebpack: {
-    // plugins: [
-    //   Components({
-    //     resolvers: [ElementPlusResolver()]
-    //   })
-    // ],
+    plugins: [
+      Components({
+        resolvers: [ElementPlusResolver()]
+      })
+    ],
     resolve: {
       alias: {
         components: '@/components'

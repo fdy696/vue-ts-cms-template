@@ -11,7 +11,7 @@ const request = new Request({
     requestInterceptor: (config) => {
       // 携带token的拦截
       const token = localCache.getCache('token')
-      if (token) {
+      if (token && config.headers) {
         config.headers.Authorization = `Bearer ${token}`
       }
       return config

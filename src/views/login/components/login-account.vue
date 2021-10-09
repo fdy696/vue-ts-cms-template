@@ -14,6 +14,7 @@
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
 import { useStore } from 'vuex'
+import { key } from '@/store'
 import { ElForm } from 'element-plus'
 import localCache from '@/utils/cache'
 const rules = {
@@ -42,12 +43,13 @@ const rules = {
     }
   ]
 }
+
 export default defineComponent({
   setup() {
-    const store = useStore()
+    const store = useStore(key)
     const account = reactive({
-      name: localCache.getCache('name') ?? '',
-      password: localCache.getCache('password') ?? ''
+      name: (localCache.getCache('name') ?? '') as string,
+      password: (localCache.getCache('password') ?? '') as string
     })
 
     const formRef = ref<InstanceType<typeof ElForm>>()
@@ -66,7 +68,8 @@ export default defineComponent({
           }
 
           // 2.开始进行登录验证
-          store.dispatch('login/accountLoginAction', { ...account })
+          console.log('denglu...')
+          store.dispatch('login/loginByAccountAction', { ...account })
         }
       })
     }
